@@ -1,11 +1,11 @@
 package leetcode
 
 func Rotate(nums []int, k int) []int {
-	num := nums[len(nums) - 1]
+	num := nums[len(nums)-1]
 	for i := 1; i < k; i++ {
 		nums = nums[i:]
 		nums = append(nums, num)
-		num = nums[len(nums) - 1]
+		num = nums[len(nums)-1]
 	}
 	return nums
 }
