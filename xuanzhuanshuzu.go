@@ -1,6 +1,6 @@
 package leetcode
 
-func rotate(nums []int, k int) []int {
+func Rotate(nums []int, k int) []int {
 	num := nums[len(nums) - 1]
 	for i := 1; i < k; i++ {
 		nums = nums[i:]
@@ -10,7 +10,7 @@ func rotate(nums []int, k int) []int {
 	return nums
 }
 
-func majorityElement(nums []int) int {
+func MajorityElement(nums []int) int {
 	result := 0
 	count_flag := 0
 	for _, num := range nums {
