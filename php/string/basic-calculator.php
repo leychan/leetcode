@@ -51,24 +51,33 @@ class Solution {
         $len = strlen($s);
         $res = 0;
         for ($i = 0; $i < $len; $i++) {
+            //当前字符
             $cur = $s[$i];
+            //如果是数字,则一直捕捉数字,完整取出整数
             if (is_numeric($cur)) {
+                //第一个数字的下标
                 $j = $i;
-
+                //最后一个数字的下标
                 while (is_numeric($s[$i])) {
                     $i++;
                 }
+                //求和
                 $res = $res + intval(substr($s, $j, $i - $j));
+                //i回到最后一个数字的位置,因为for循环里面还会i++,不归位的话,会导致跳过下一个字符
                 $i--;
                 continue;
             }
 
+            //如果是`+`或者是`-`,也完整取出整数(1+5-3) => 6-3; 6-3 => 3
             if (($cur == '+') || ($cur == '-')) {
+                //j表示第一个数字的下标,因为当前是`-`,下一个必定是数字
                 $j = ++$i;
                 while (is_numeric($s[$i])) {
                     $i++;
                 }
+                //如果当前是`+`,则相加;负责相减
                 $res = $cur == '+' ? $res + intval(substr($s, $j, $i - $j)) : $res - intval(substr($s, $j, $i - $j));
+                //i需要回到最后一个数字的下标,否则会跳过下一个字符
                 $i--;
             }
         }
@@ -77,4 +86,4 @@ class Solution {
     }
 }
 
-echo (new Solution())->calculate("(5)-((1+(5)))");
+echo (new Solution())->calculate("2147483647");
